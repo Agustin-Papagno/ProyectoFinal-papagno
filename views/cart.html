@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../cart.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../js/cart.js" defer></script>
+    <script src="../js/cartservice.js" defer></script>
+    
+    <title>Cafeteria Papagno</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="../index.html"><img src="../img/logo2.png" id="logo" alt="logo"></a>
+            <div>
+                <a href="./cart.html"><img src="../img/carrito.png" alt="carrito"><span id="cuenta-carrito">0</span></a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <p id="carrito-vacio">Ups! no hay productos en el carrito. <a href="../index.html">Agrega algunos</a></p>
+        <section id="productos-container"></section>
+        <section id="totales">
+            <p>Total unidades: <span id="unidades">0</span></p>
+            <p>Total precio: $<span id="precio">0</span></p>
+            <button id="comprar">Comprar</button>
+            <button id="reiniciar">Reiniciar carrito</button>
+        </section>
+    </main>
+    <footer>
+        <p>Agustin papagno, @2025</p>
+    </footer>
+</body>
+</html>
