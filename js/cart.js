@@ -6,9 +6,6 @@ const totalesElement = document.getElementById("totales");
 const reiniciarCarritoElement = document.getElementById("reiniciar");
 
 
-
-
-
 function crearTarjetasProductos() {
     contenedorTarjetas.innerHTML = "";
     const productos = JSON.parse(localStorage.getItem("productos"));
@@ -53,6 +50,17 @@ function crearTarjetasProductos() {
 crearTarjetasProductos();
 actualizarTotales();
 
+fetch("./productos.json")
+  .then(res => {
+    if (!res.ok) throw new Error("Error al cargar productos.json");
+    return res.json();
+  })
+  .then(data => {
+    productosDisponibles = data;
+    crearTarjetasProductos(productosDisponibles);
+  })
+  .catch(err => console.error("Fetch error:", err));
+
 function actualizarTotales() {
     const productos = JSON.parse(localStorage.getItem("productos"));
     let unidades = 0;
@@ -85,7 +93,7 @@ function reiniciarCarrito() {
     actualizarTotales();
     crearTarjetasProductos();
 }
-
+//formulario carrito
 document.getElementById("formularioCheckout").addEventListener("submit", function (e) {
     e.preventDefault();
 

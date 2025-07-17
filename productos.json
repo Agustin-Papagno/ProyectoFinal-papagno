@@ -17,19 +17,16 @@
     {
         "id": 4,
         "nombre": "capsulas cioccolatino",
-        "img": "4.avif",
         "precio": 20000
     },
     {
         "id": 5,
         "nombre": "capsulas corto",
-        "img": "5.avif",
         "precio": 15000
     },
     {
         "id": 6,
         "nombre": "capsulas nocciola",
-        "img": "6.avif",
         "precio": 12000
     }
 ]
