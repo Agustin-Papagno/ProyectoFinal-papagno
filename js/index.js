@@ -32,4 +32,18 @@ function crearTarjetasProductos(productos) {
     });
 }
 
-crearTarjetasProductos(productos);
+
+// 🔄 Cargar productos desde JSON
+fetch('./productos.json')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("No se pudo cargar el archivo JSON");
+        }
+        return response.json();
+    })
+    .then(data => {
+        crearTarjetasProductos(data);
+    })
+    .catch(error => {
+        console.error("Error al cargar los productos:", error);
+    });

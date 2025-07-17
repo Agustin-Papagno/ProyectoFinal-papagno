@@ -6,6 +6,9 @@ const totalesElement = document.getElementById("totales");
 const reiniciarCarritoElement = document.getElementById("reiniciar");
 
 
+
+
+
 function crearTarjetasProductos() {
     contenedorTarjetas.innerHTML = "";
     const productos = JSON.parse(localStorage.getItem("productos"));
@@ -83,31 +86,80 @@ function reiniciarCarrito() {
     crearTarjetasProductos();
 }
 
-function comprar() {
-    const productos = JSON.parse(localStorage.getItem("productos")) || [];
+document.getElementById("formularioCheckout").addEventListener("submit", function (e) {
+    e.preventDefault();
 
-    if (productos.length === 0) {
-        Swal.fire({
-            title: 'Carrito vacío',
-            text: 'No hay productos para comprar.',
-            icon: 'warning',
-            confirmButtonColor: '#8B4513',
-        });
+    // Capturar datos del formulario
+    const nombre = document.getElementById("nombre").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const telefono = document.getElementById("telefono").value.trim();
+    const direccion = document.getElementById("direccion").value.trim();
+    const metodoPago = document.getElementById("metodoPago").value;
+
+    // Validaciones básicas
+    const tieneNumeros = /\d/;
+    if (tieneNumeros.test(nombre)) {
+        alert("El nombre no puede contener números.");
         return;
     }
 
-    Swal.fire({
-        title: 'Compra realizada',
-        text: 'Gracias por tu compra!',
-        icon: 'success',
-        confirmButtonColor: '#8B4513',
+    if (isNaN(telefono)) {
+        alert("El teléfono solo debe contener números.");
+        return;
+    }
+
+    if (!email.includes("@")) {
+        alert("El email no es válido.");
+        return;
+    }
+
+    // Obtener productos del carrito
+    const productosCarrito = JSON.parse(localStorage.getItem("productos")) || [];
+
+    if (productosCarrito.length === 0) {
+        alert("El carrito está vacío.");
+        return;
+    }
+
+    // Mostrar resumen de la compra :)
+    const detalle = document.getElementById("detalleProductos");
+    const total = document.getElementById("totalCompra");
+    const datos = document.getElementById("datosComprador");
+    const resumen = document.getElementById("resumenCompra");
+
+    let totalCompra = 0;
+    detalle.innerHTML = "";
+
+    productosCarrito.forEach(producto => {
+        detalle.innerHTML += `<p>${producto.nombre} x${producto.cantidad} - $${producto.precio * producto.cantidad}</p>`;
+        totalCompra += producto.precio * producto.cantidad;
     });
 
-    localStorage.removeItem("productos");
-    revisarMensajeVacio();
-    crearTarjetasProductos();
-}
+    total.innerText = `Total: $${totalCompra}`;
+    datos.innerHTML = `
+      <strong>Nombre:</strong> ${nombre}<br>
+      <strong>Email:</strong> ${email}<br>
+      <strong>Teléfono:</strong> ${telefono}<br>
+      <strong>Dirección:</strong> ${direccion}<br>
+      <strong>Método de pago:</strong> ${metodoPago}
+    `;
 
-document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("comprar")?.addEventListener("click", comprar);
+    resumen.style.display = "block"; 
+    this.reset(); 
+
+    // Limpiar carrito y actualizar vista del mismo
+    localStorage.removeItem("productos");
+    crearTarjetasProductos();
+    actualizarTotales();
+    revisarMensajeVacio();
+
+    //alerta de compra realizada con sweets alerts!
+    Swal.fire({
+  title: '¡Compra realizada!',
+  text: 'Gracias por tu compra. Te enviaremos la confirmación por email.',
+  icon: 'success',
+  confirmButtonColor: '#8B4513',
+  confirmButtonText: 'Aceptar'
 });
+});
+

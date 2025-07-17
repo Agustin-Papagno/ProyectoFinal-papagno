@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,9 +9,10 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../js/cart.js" defer></script>
     <script src="../js/cartservice.js" defer></script>
-    
+
     <title>Cafeteria Papagno</title>
 </head>
+
 <body>
     <header>
         <nav>
@@ -26,12 +28,38 @@
         <section id="totales">
             <p>Total unidades: <span id="unidades">0</span></p>
             <p>Total precio: $<span id="precio">0</span></p>
-            <button id="comprar">Comprar</button>
             <button id="reiniciar">Reiniciar carrito</button>
+        </section>
+        <!-- Formulario de Checkout -->
+        <section id="checkout" style="margin-top: 40px;">
+            <h2>Finalizar compra</h2>
+            <form id="formularioCheckout">
+                <input type="text" id="nombre" placeholder="Nombre completo" required>
+                <input type="email" id="email" placeholder="Email" required>
+                <input type="text" id="telefono" placeholder="Teléfono" required>
+                <input type="text" id="direccion" placeholder="Dirección" required>
+                <select id="metodoPago" required>
+                    <option value="">Seleccionar método de pago</option>
+                    <option value="tarjeta">Tarjeta</option>
+                    <option value="efectivo">Efectivo</option>
+                    <option value="transferencia">Transferencia</option>
+                </select>
+                <button type="submit">Confirmar compra</button>
+            </form>
+
+            <!-- Resumen -->
+            <div id="resumenCompra" style="display:none; margin-top:20px; border:1px solid #ccc; padding:10px;">
+                <h3>Resumen de compra</h3>
+                <div id="detalleProductos"></div>
+                <p id="totalCompra"></p>
+                <h4>Datos del comprador</h4>
+                <p id="datosComprador"></p>
+            </div>
         </section>
     </main>
     <footer>
         <p>Agustin papagno, @2025</p>
     </footer>
 </body>
+
 </html>
