@@ -47,3 +47,9 @@ fetch('./productos.json')
     .catch(error => {
         console.error("Error al cargar los productos:", error);
     });
+
+    if (localStorage.getItem("productos")) {
+    mostrarCarrito();
+    actualizarTotales();
+    revisarMensajeVacio();
+}

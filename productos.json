@@ -2,31 +2,37 @@
     {
         "id": 1,
         "nombre": "Cápsulas Colombia",
-        "precio": 12300
+        "precio": 12300,
+        "cantidad": 1
     },
     {
         "id": 2,
         "nombre": "Cápsulas Ethiopia",
-        "precio": 14000
+        "precio": 14000,
+        "cantidad": 1
     },
     {
         "id": 3,
         "nombre": "Cápsulas Honduras",
-        "precio": 13000
+        "precio": 13000,
+        "cantidad": 1
     },
     {
         "id": 4,
         "nombre": "capsulas cioccolatino",
-        "precio": 20000
+        "precio": 20000,
+        "cantidad": 1
     },
     {
         "id": 5,
         "nombre": "capsulas corto",
-        "precio": 15000
+        "precio": 15000,
+        "cantidad": 1
     },
     {
         "id": 6,
         "nombre": "capsulas nocciola",
-        "precio": 12000
+        "precio": 12000,
+        "cantidad": 1
     }
 ]
